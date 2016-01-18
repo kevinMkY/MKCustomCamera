@@ -1,0 +1,11 @@
+project.xcworkspace
+xcuserdata
+iWeidao.xccheckout
+eonfig.plist
+*.swp
+.DS_Store
+Build
+iWeidao.xcodeproj/project.pbxproj
+xcshareddata
+*.xcscheme
+iWeidao.xcworkspace/xcshareddata/xcschemes/iWeidao.xcscheme
