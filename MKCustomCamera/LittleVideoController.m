@@ -481,18 +481,17 @@ typedef NS_ENUM(NSInteger,VideoStatus){
 
 - (void)captureOutput:(AVCaptureFileOutput *)captureOutput didFinishRecordingToOutputFileAtURL:(NSURL *)outputFileURL fromConnections:(NSArray *)connections error:(NSError *)error
 {
-    NSLog(@"---- 录制结束 ----%@ ",captureOutput.outputFileURL);
+    NSLog(@"---- 录制结束 ---%@-%@ ",outputFileURL,captureOutput.outputFileURL);
     
-    if (self.canSave) {
-        [self pushToPlay:captureOutput.outputFileURL];
-        self.canSave = NO;
+    if (outputFileURL.absoluteString.length == 0 && captureOutput.outputFileURL.absoluteString.length == 0 ) {
+        [self showMsgWithTitle:@"出错了" andContent:@"录制视频保存地址出错"];
+        return;
     }
     
-    //时间差
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        
-    });
-    
+    if (self.canSave) {
+        [self pushToPlay:outputFileURL];
+        self.canSave = NO;
+    }
 }
 
 - (void)pushToPlay:(NSURL *)url
